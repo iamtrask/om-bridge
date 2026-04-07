@@ -32,7 +32,11 @@ const jidMap = {};  // sender digits → full remoteJid
 
 async function start() {
   const { state, saveCreds } = await useMultiFileAuthState("./auth");
-  sock = makeWASocket({ auth: state });
+  sock = makeWASocket({
+    auth: state,
+    syncFullHistory: false,
+    logger: { info() {}, debug() {}, warn() {}, error: console.error, trace() {}, child() { return this; }, level: "error" }
+  });
   sock.ev.on("creds.update", saveCreds);
 
   sock.ev.on("connection.update", async ({ connection, lastDisconnect, qr }) => {
@@ -63,6 +67,7 @@ async function start() {
         || "";
       if (!text) continue;
 
+      console.log("raw JID:", msg.key.remoteJid);
       const sender = digits(msg.key.remoteJid);
       jidMap[sender] = msg.key.remoteJid;
       console.log(`← ${sender}: ${text}`);
