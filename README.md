@@ -32,7 +32,7 @@ node bridge.js
 ## Learn More
 
 - **Blog post:** [Decentralized AI in 50 Lines of Python](https://iamtrask.github.io/2026/04/07/decentralized-ai-in-50-lines/)
-- **Video walkthrough:** [YouTube](https://www.youtube.com/watch?v=YDxYKNL-CBY)
+- **Video walkthrough:** [YouTube](https://www.youtube.com/watch?v=zY2dAK-pMPI)
 - **Full course:** [Decentralized AI from Scratch](https://github.com/iamtrask/decentralized-ai-from-scratch)
 
 ## License
