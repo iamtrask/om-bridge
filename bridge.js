@@ -42,7 +42,7 @@ async function start() {
   sock.ev.on("connection.update", async ({ connection, lastDisconnect, qr }) => {
     if (qr) {
       console.log("\nScan this QR code with WhatsApp:\n");
-      console.log(await QRCode.toString(qr, { type: "terminal", small: true }));
+      console.log(await QRCode.toString(qr, { type: "terminal" }));
     }
     if (connection === "open") {
       console.log("Connected to WhatsApp!");
