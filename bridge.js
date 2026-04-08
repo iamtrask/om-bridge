@@ -61,7 +61,8 @@ async function start() {
 
   sock.ev.on("messages.upsert", async ({ messages }) => {
     for (const msg of messages) {
-      if (msg.key.fromMe) continue;
+      // Allow self-messages for testing (skip other fromMe like delivery receipts)
+      if (msg.key.fromMe && !msg.message?.conversation && !msg.message?.extendedTextMessage?.text) continue;
       const text = msg.message?.conversation
         || msg.message?.extendedTextMessage?.text
         || "";
