@@ -39,10 +39,13 @@ async function start() {
   });
   sock.ev.on("creds.update", saveCreds);
 
+  let qrCount = 0;
   sock.ev.on("connection.update", async ({ connection, lastDisconnect, qr }) => {
     if (qr) {
-      console.log("\nScan this QR code with WhatsApp:\n");
-      console.log(await QRCode.toString(qr, { type: "terminal" }));
+      qrCount++;
+      const small = qrCount % 2 === 1;
+      console.log("\nScan this QR code with WhatsApp:" + (small ? "" : " (enlarged for compatibility)") + "\n");
+      console.log(await QRCode.toString(qr, { type: "terminal", small }));
     }
     if (connection === "open") {
       console.log("Connected to WhatsApp!");
